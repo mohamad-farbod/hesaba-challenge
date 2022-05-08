@@ -30,6 +30,8 @@ const Home = () => {
     }
   }, [data])
 
+  // submitting exchange after verification and sending them to redux store
+
   const onFinalExchangeHandler = (currency1, currency2, amount) => {
     const amount1 = amount
 

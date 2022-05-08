@@ -15,17 +15,21 @@ const HomePage = ({ wallet, onFinalExchange, currency }) => {
     EUR: <BiEuro />,
     GBP: <BiPound />,
   }
-  const onExchangeHandler = () => {
-    const decimalCount = (num) => {
-      // Convert to String
-      const numStr = String(num)
-      // String Contains Decimal
-      if (numStr.includes('.')) {
-        return numStr.split('.')[1].length
-      }
-      // String Does Not Contain Decimal
-      return 0
+
+  //checking that decimal points don't exceed 2
+
+  const decimalCount = (num) => {
+    // Convert to String
+    const numStr = String(num)
+    // String Contains Decimal
+    if (numStr.includes('.')) {
+      return numStr.split('.')[1].length
     }
+    // String Does Not Contain Decimal
+    return 0
+  }
+
+  const onExchangeHandler = () => {
     if (isNaN(exchangeAmount) || exchangeAmount <= 0) {
       alert('input should be a positive number ')
       return
@@ -85,8 +89,10 @@ const HomePage = ({ wallet, onFinalExchange, currency }) => {
         <div
           className="absolute -top-3 left-2 cursor-pointer rounded-full bg-black text-2xl text-blue-400 hover:bg-red-800"
           onClick={() => {
-            setCurrency1(currency2)
-            setCurrency2(currency1)
+            const curr1 = currency1
+            const curr2 = currency2
+            setCurrency1(curr2)
+            setCurrency2(curr1)
           }}
         >
           <MdSwapVert />
