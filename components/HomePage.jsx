@@ -1,6 +1,7 @@
 import React from 'react'
 import { useState } from 'react'
 import { MdSwapVert } from 'react-icons/md'
+import { BiDollar, BiEuro, BiPound, BiDoughnutChart } from 'react-icons/bi'
 
 const HomePage = ({ wallet, onFinalExchange, currency }) => {
   const walletKeys = Object.keys(wallet)
@@ -8,6 +9,12 @@ const HomePage = ({ wallet, onFinalExchange, currency }) => {
   const [currency2, setCurrency2] = useState(walletKeys[1])
   const [exchangeAmount, setExchangeAmount] = useState(0)
 
+  const logos = {
+    USD: <BiDollar />,
+    AED: <BiDoughnutChart />,
+    EUR: <BiEuro />,
+    GBP: <BiPound />,
+  }
   const onExchangeHandler = () => {
     const decimalCount = (num) => {
       // Convert to String
@@ -23,7 +30,7 @@ const HomePage = ({ wallet, onFinalExchange, currency }) => {
       alert('input should be a positive number ')
       return
     }
-    if (exchangeAmount > wallet[currency1].value) {
+    if (exchangeAmount > wallet[currency1]) {
       alert('you have Exceeded your wallet limit ')
       return
     }
@@ -54,8 +61,8 @@ const HomePage = ({ wallet, onFinalExchange, currency }) => {
             })}
           </select>
           <div className="ml-2 flex items-center justify-start text-xs text-gray-400">
-            {wallet[currency1].logo}
-            {wallet[currency1].value.toFixed(2)}
+            {logos[currency1]}
+            {wallet[currency1].toFixed(2)}
           </div>
         </div>{' '}
         <div>
@@ -71,9 +78,9 @@ const HomePage = ({ wallet, onFinalExchange, currency }) => {
       </div>
       <div className="relative mt-4 bg-gray-200 pb-8 pt-6 pl-2">
         <div className=" -my-9 mx-auto flex  w-min items-center justify-start rounded-md border border-gray-400 bg-white px-3 text-center">
-          {wallet[currency1].logo}1=
+          {logos[currency1]}1=
           {(currency[currency2] / currency[currency1]).toFixed(6)}
-          {wallet[currency2].logo}
+          {logos[currency2]}
         </div>
         <div
           className="absolute -top-3 left-2 cursor-pointer rounded-full bg-black text-2xl text-blue-400 hover:bg-red-800"
@@ -101,7 +108,7 @@ const HomePage = ({ wallet, onFinalExchange, currency }) => {
               })}
             </select>{' '}
             <div className="my-1  flex items-center justify-start text-xs text-gray-400">
-              {wallet[currency2].logo} {wallet[currency2].value.toFixed(2)}
+              {logos[currency2]} {wallet[currency2].toFixed(2)}
             </div>
           </div>
           <div className="mr-4">

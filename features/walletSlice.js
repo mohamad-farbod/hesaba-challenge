@@ -1,11 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit'
-import { BiDollar, BiEuro, BiPound, BiDoughnutChart } from 'react-icons/bi'
 
 const initialState = {
-  USD: { value: 3000, logo: <BiDollar /> },
-  EUR: { value: 2500, logo: <BiEuro /> },
-  AED: { value: 3200, logo: <BiDoughnutChart /> },
-  GBP: { value: 2000, logo: <BiPound /> },
+  USD: 3000,
+  EUR: 2500,
+  AED: 3200,
+  GBP: 2000,
 }
 export const walletSlice = createSlice({
   name: 'wallet',
@@ -13,9 +12,8 @@ export const walletSlice = createSlice({
   reducers: {
     exchangeMoney: (state, action) => {
       const { currency1, currency2, amount1, amount2 } = action.payload
-      console.log(currency1, currency2, amount1, amount2)
-      state[currency1].value = state[currency1].value - amount1
-      state[currency2].value = state[currency2].value + amount2
+      state[currency1] = state[currency1] - amount1
+      state[currency2] = state[currency2] + amount2
     },
   },
 })
