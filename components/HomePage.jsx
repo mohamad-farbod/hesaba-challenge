@@ -122,7 +122,8 @@ const HomePage = ({ wallet, onFinalExchange, currency }) => {
                 {logos[currency2]} {wallet[currency2].toFixed(2)}
               </div>
             </div>
-            <div className="mr-4">
+            <div className="mr-4 flex items-center justify-start">
+              {logos[currency2]}{' '}
               {(
                 (currency[currency2] * exchangeAmount) /
                 currency[currency1]
